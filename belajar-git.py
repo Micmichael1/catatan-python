@@ -1,1 +1,1 @@
-print("ini main")
+print("terakhir")
