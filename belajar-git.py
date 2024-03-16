@@ -1,1 +1,1 @@
-print("hapus di rollback 1")
+print("ini main")
