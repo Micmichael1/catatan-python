@@ -1,0 +1,38 @@
+# Mengambil data per baris sesuai dengan jumlah kolom per table
+def split_line(columns, page, list_per_table) :
+    page = page[:-1]
+    for part in range(len(page) // columns) :
+        list_per_line = []
+        for i in range(columns) :
+            list_per_line.append(page[part * columns + i])
+        list_per_table.append(list_per_line)
+    return list_per_table
+
+#Mengambil data
+from PyPDF2 import PdfFileReader
+pdf_document = "ObesityAnalysis.pdf"
+with open(pdf_document, "rb") as filehandle:
+    pdf = PdfFileReader(filehandle)
+    all_table_list=[]
+    list_per_table=[]
+    batas_halaman=[0,160,320,480,640]
+    columns_per_table=[7,9,8,8]
+    for i in range(4):
+        for page in range(batas_halaman[i],batas_halaman[i+1]):
+            pages = pdf.getPage(page)
+            halaman=pages.extractText().split("\n")
+            list_per_table=split_line(columns_per_table[i], halaman, list_per_table)
+        if(len(all_table_list)==0):
+            all_table_list=list(list_per_table)
+        else:
+            for baris in range(len(all_table_list)):
+                all_table_list[baris]= all_table_list[baris] + list_per_table[baris]
+        list_per_table=[]
+
+# Menuliskan Ke csv
+import csv
+with open("191402059_Michael_CSV.csv", 'w',newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    for i in range(len(all_table_list)):
+        csvwriter.writerow(all_table_list[i])
+print("done")

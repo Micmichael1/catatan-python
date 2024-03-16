@@ -1,0 +1,36 @@
+import random
+import csv
+with open('guru_kelas.csv','w',newline='')as file:
+    writer=csv.writer(file)
+
+    # guru
+    guru_umum = [93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103]
+    guru_ipa = [104, 180, 181, 182]
+    guru_ips = [183, 184, 185, 186]
+
+    # kelas
+    kelas_ipa = [3, 4, 5, 6, 9, 10, 15, 16, 18, 21]
+    kelas_ips = [7, 8, 11, 12, 13, 14, 17]
+
+    #mapel
+    mapel_umum=[1,2,3,4,5,6,7,8,9,10,15]
+    mapel_ipa=[11,12,13,14]
+    mapel_ips=[16,17,18,19]
+
+    #dummy
+    dummy_ipa=0
+    dummy_ips=0
+
+    #IPA
+    for k in kelas_ipa:
+        for m in mapel_umum+mapel_ipa:
+            writer.writerow([(guru_umum+guru_ipa)[dummy_ipa],k,m,1])
+            dummy_ipa+=1
+        dummy_ipa=0
+
+    #IPS
+    for k in kelas_ips:
+        for m in mapel_umum+mapel_ips:
+            writer.writerow([(guru_umum + guru_ips)[dummy_ips],k,m,1])
+            dummy_ips += 1
+        dummy_ips = 0
