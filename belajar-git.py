@@ -1,2 +1,2 @@
 print("terakhir")
-print("oke gas")
+print("amin")
