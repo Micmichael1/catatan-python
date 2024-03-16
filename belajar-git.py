@@ -1,1 +1,1 @@
-print("hapus di rollback 2")
+print("hapus di rollback 1")
