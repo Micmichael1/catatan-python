@@ -27,3 +27,4 @@ class bekerja():
 jenis = [car("Mazda","RX8"),electric_car("tesla",model='Truck',battery='8V')]
 for rekursif_jenis in jenis:
     bekerja(rekursif_jenis)
+    print("Kita masuk reset")
