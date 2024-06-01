@@ -30,10 +30,11 @@ class Scraping:
         self.content = self.soup.find(id='bodyContent')  # You may need to inspect the page source to find the appropriate element
         # Find the second table
         # self.table = self.content.find('table', class_='nowraplinks mw-collapsible autocollapsed navbox-inner')
-        self.table = self.content.find('table', class_='wikitable sortable')
+        self.table = self.content.find('div', class_='mw-content-ltr mw-parser-output')
         # Find the kota content from the second table
-        # self.kota = self.table.find_all('li')
-        self.kota = self.table.find_all('td')
+        self.kota = self.table.find_all('li')
+        print(self.kota)
+        # self.kota = self.table.find_all('td')
         self.kota = self.kota[3::9]
         # Load kota content from table
         self.kota_content_loading()
@@ -84,7 +85,7 @@ class Scraping:
 if __name__ == "__main__":
     # Define the URL of the Wikipedia page you want to scrape
     # url = 'https://id.wikipedia.org/wiki/Daftar_kota_di_Indonesia'
-    url = 'https://id.wikipedia.org/wiki/Daftar_kota_di_Afganistan'
+    url = 'https://id.wikipedia.org/wiki/Daftar_kota_di_India'
     # Instance Scraping class
     scrap = Scraping(url)
     print(scrap.combine_kota_link)
