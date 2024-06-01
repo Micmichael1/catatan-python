@@ -29,16 +29,20 @@ class Scraping:
         # Find the main content of the page (usually within <div id="content"> or <div class="mw-parser-output">)
         self.content = self.soup.find(id='bodyContent')  # You may need to inspect the page source to find the appropriate element
         # Find the second table
-        self.table = self.content.find('table', class_='nowraplinks mw-collapsible autocollapsed navbox-inner')
+        # self.table = self.content.find('table', class_='nowraplinks mw-collapsible autocollapsed navbox-inner')
+        self.table = self.content.find('table', class_='wikitable sortable')
         # Find the kota content from the second table
-        self.kota = self.table.find_all('li')
+        # self.kota = self.table.find_all('li')
+        self.kota = self.table.find_all('td')
+        self.kota = self.kota[3::9]
         # Load kota content from table
         self.kota_content_loading()
         # Load kota link content from table
         self.link_content_loading()
         # Zip kota dan link into dict
         self.zip_kota_link()
-
+        # write to CSV
+        self.write_to_csv()
 
     def kota_content_loading(self):
         # clean code untuk kota
