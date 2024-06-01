@@ -1,2 +1,0 @@
-print("terakhir")
-print("amin")
