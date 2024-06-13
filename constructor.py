@@ -1,3 +1,9 @@
+class sound:
+    def __init__(self):
+        print("i am in sound class")
+    def mobil(self):
+        print("tin")
+
 class Point:
     # membuat costructor yang menerima parameter
     def __init__(self,x,y):
